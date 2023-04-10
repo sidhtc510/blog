@@ -11,7 +11,7 @@ export default function Single({}) {
       {id}
 
      <NavLink to={`/write/?edit=2`}>Edit post</NavLink>
-     <NavLink to={`/write/?delete=2`}>Delete post</NavLink>
+     <NavLink to={``}>Delete post</NavLink>
     </div>
   );
 }
