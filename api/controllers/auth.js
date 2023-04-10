@@ -1,14 +1,15 @@
 import { db } from "../db.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
   //есть ли пользователь?
-  const q = "SELECT * FROM users WHERE email = ? OR username = ?";
+  const q = "SELECT * FROM users WHERE email = ?";
 
-  db.query(q, [req.body.email, req.body.username], (err, data) => {
-  
+  // db.query(q, [req.body.email, req.body.username], (err, data) => {
+  db.query(q, [req.body.email], (err, data) => {
     if (err) return res.json(err);
-    if (data) return res.status(409).json("user already exist");
+    if (data.length) return res.status(409).json("user already exist");
 
     //hash password and create user
 
@@ -18,13 +19,32 @@ export const register = (req, res) => {
     const q = "INSERT INTO users (`username`,`email`,`password`) VALUES (?)";
     const values = [req.body.username, req.body.email, hash];
 
-    db.query(q, [values], (err,data)=>{
-        if(err) return res.json(err)
-        return res.status(200).json("user has been created")
-    })
-
+    db.query(q, [values], (err, data) => {
+      if (err) return res.json(err);
+      return res.status(200).json("user has been created");
+    });
   });
 };
 
-export const login = (req, res) => {};
+export const login = (req, res) => {
+  // check user
+
+  const q = "SELECT * FROM users WHERE email = ?";
+
+  db.query(q, [req.body.email], (err, data) => {
+    if (err) return res.json(err);
+    if (data.length === 0) return res.status(404).json("user not found");
+
+    // check pass
+    const isPasswordCorrect = bcrypt.compareSync(
+      req.body.password,
+      data[0].password
+    );
+    if (!isPasswordCorrect)
+      return res.status(400).json("Wrong username or password");
+
+      const token = jwt.sign({id:data[0].id}, "jwtkey")
+  });
+};
+
 export const logout = (req, res) => {};
