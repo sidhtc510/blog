@@ -8,6 +8,8 @@ export const data =[
         author: "lorem20",
         created_at: "20.12.1984",
         updated_at: "20.12.1984",
+        uid:333,
+        cat: "qa"
     },
     {
         id:2,

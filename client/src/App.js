@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
 import  "./style.css"
+import Category from "./components/Category";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="app">
       <div className="container">
         <Navbar />
+        <Category />
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/register" Component={Register} />
