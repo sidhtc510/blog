@@ -126,3 +126,24 @@ footer {
   color: black;
   font-weight: bold;
 }
+
+
+/* menu */
+.menu{
+  border: 2px solid dashed;
+  width: 300px;
+}
+
+/* single */
+
+.singleWrapper{
+display: flex;
+justify-content: space-between;
+}
+
+.singlePost{
+padding: 20px;
+margin: 20px;
+border: 1px solid black;
+border-radius: 8px;
+}
