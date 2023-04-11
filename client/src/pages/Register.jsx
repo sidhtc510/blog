@@ -3,30 +3,42 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Register() {
-  const [inputs, setInputs] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+    const [inputs, setInputs] = useState({
+      username: "",
+      email: "",
+      password: "",
+    });
 
-  const [err, setError] = useState(null)
+    const [err, setError] = useState(null)
 
-  const navigate = useNavigate()
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+    const navigate = useNavigate()
+    const handleChange = (e) => {
+      setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("/auth/register", inputs);
-      navigate("/login")
- 
-    } catch (err) {
-      setError(err.response.data)
-      // console.log(err);
-    }
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // console.log(inputs);
+      try {
+        const res = await axios.post("/auth/register", inputs);
+        navigate("/login")
+  //  console.log(res);
+      } catch (err) {
+        setError(err.response.data)
+        // console.log(err);
+      }
+    };
+
+  // const [inputs, setInputs] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  // });
+
+
+
+
+
 
   return (
     <div className="auth">

@@ -12,10 +12,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 
-// app.get("/test", (req, res) => {
-//   res.json("it works");
-// });
+app.get("/test", (req, res) => {
+  res.json("it works");
+});
 
 app.listen(8800, () => {
   console.log("connected");
 });
+

@@ -4,10 +4,11 @@ import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
   //есть ли пользователь?
-  const q = "SELECT * FROM users WHERE email = ?";
+
+  const q = "SELECT * FROM users WHERE email = ? OR username = ?";
 
   // db.query(q, [req.body.email, req.body.username], (err, data) => {
-  db.query(q, [req.body.email], (err, data) => {
+  db.query(q, [req.body.email, req.body.name], (err, data) => {
     if (err) return res.json(err);
     if (data.length) return res.status(409).json("user already exist");
 
