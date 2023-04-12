@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
+
+
+
 
 export default function Write() {
   const state = useLocation().state;
-  const [value, setValue] = useState(state?.desc || "");
   const [title, setTitle] = useState(state?.title || "");
+  const [value, setValue] = useState(state?.desc || "");
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState(state?.cat || "");
   // console.log(cat);
+
+  const navigate = useNavigate();
 
   const upload = async () => {
     try {
@@ -27,23 +32,26 @@ export default function Write() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = upload();
-
+    const imgUrl = await upload();
+  // console.log(imgUrl);
     try {
       state
         ? await axios.put(`/posts/${state.id}`, {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
+            img: file ? imgUrl : state?.img,
           })
+       
         : await axios.post(`/posts/`, {
             title,
             desc: value,
             cat,
-            img: file ? imgUrl : "",
-            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
+            img: file ? imgUrl : "placeholder.jpg",
+            date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
+
+          navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -70,22 +78,24 @@ export default function Write() {
       <div className="menu">
         <div className="item">
           <h1>Publish</h1>
-          <span>
+          {/* <span>
             status: <b>draft</b>
           </span>
           <span>
             visibility: <b>public</b>
-          </span>
+          </span> */}
           <input
-            style={{ display: "none" }}
+            // style={{ display: "none" }}
             type="file"
             id="file"
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <label htmlFor="file">Upload image</label>
+          <label htmlFor="file">
+            {state?.img ? `Uploaded image -  ${state?.img}` : ""}{" "}
+          </label>
 
           <div className="buttons">
-            <button>Save as a draft</button>
+            {/* <button>Save as a draft</button> */}
             <button onClick={handleClick}>Publish</button>
           </div>
         </div>
@@ -93,33 +103,33 @@ export default function Write() {
           <h1>Category</h1>
           <input
             type="radio"
-            checked={cat === "fe"}
+            checked={cat && cat === "fe"}
             name="cat"
             id="FrontEnd"
-            value="FrontEnd"
+            value="fe"
             onChange={(e) => setCat(e.target.value)}
           />
           <label htmlFor="FrontEnd">FrontEnd</label>
 
           <input
             type="radio"
-            checked={cat === "be"}
+            checked={cat && cat === "be"}
             name="cat"
             id="BackEnd"
-            value="BackEnd"
+            value="be"
             onChange={(e) => setCat(e.target.value)}
           />
           <label htmlFor="BackEnd">BackEnd</label>
 
           <input
             type="radio"
-            checked={cat === "qa"}
+            checked={cat && cat === "qa"}
             name="cat"
-            id="QA"
-            value="QA"
+            id="qa"
+            value="qa"
             onChange={(e) => setCat(e.target.value)}
           />
-          <label htmlFor="QA">QA</label>
+          <label htmlFor="qa">QA</label>
         </div>
       </div>
     </div>
