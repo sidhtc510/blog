@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data } from "../data/content";
+// import { data } from "../data/content";
 import moment from "moment";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -24,10 +24,8 @@ export default function Home() {
   }, [cat]);
 
 
-const getText = (html) =>{
-  const doc = new DOMParser().parseFromString(html, "text/html")
-  return doc.body.textContent
-}
+
+
   return (
     <div className="postsContainer">
       {posts.map((post) => (

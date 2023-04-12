@@ -40,13 +40,11 @@ export default function Single({}) {
     }
   };
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return <div dangerouslySetInnerHTML={{ __html: doc.body.innerHTML }} />;
+  };
 
-  const getText = (html) =>{
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
-
-  
   return (
     // <div>
     //   {id}
@@ -54,27 +52,31 @@ export default function Single({}) {
     //  <NavLink to={`/write/?edit=2`}>Edit post</NavLink>
     //  <NavLink to={``}>Delete post</NavLink>
     // </div>
+    <>
+      <h2 style={{textAlign: 'center'}}>individual post page</h2>
+      <div className="singleWrapper">
+        <div className="singlePost">
+          {/* <div>id: {post.id}</div> */}
+          <div>title: {post.title}</div>
+          {/* <div>image: {post?.img}</div> */}
+          <img src={`../upload/${post?.img}`} alt="" />
+          <div>date: {moment(post.date).fromNow()}</div>
+          <div>username: {post.username}</div>
+          <div>category:{post.cat}</div>
+          <div>{getText(post.desc)}</div>
 
-    <div className="singleWrapper">
-      <div className="singlePost">
-        {/* <div>id: {post.id}</div> */}
-        <div>title: {post.title}</div>
-        {/* <div>image: {post?.img}</div> */}
-        <img src={`../upload/${post?.img}`} alt="" />
-        <div>date: {moment(post.date).fromNow()}</div>
-        <div>username: {post.username}</div>
-        <div>category:{post.cat}</div>
-        <div>{getText(post.desc)}</div>
+          {currentUser && currentUser.username === post.username ? (
+            <div>
+              <NavLink to={`/write/?edit=${post.id}`} state={post}>
+                Edit post
+              </NavLink>
+              <NavLink onClick={handleDelete}>Delete post</NavLink>
+            </div>
+          ) : null}
+        </div>
 
-        {currentUser && currentUser.username === post.username ? (
-          <div>
-            <NavLink to={`/write/?edit=${post.id}`} state={post}>Edit post</NavLink>
-            <NavLink onClick={handleDelete}>Delete post</NavLink>
-          </div>
-        ) : null}
+        <Menu cat={post.cat} />
       </div>
-   
-      <Menu cat={post.cat} />
-    </div>
+    </>
   );
 }

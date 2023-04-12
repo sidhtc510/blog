@@ -25,12 +25,12 @@ export default function Menu({ cat }) {
       {posts.map((post) => (
         <NavLink to={`/post/${post.id}`} key={post.id}>
           <div className="post">
-            <div>id: {post.id}</div>
+            {/* <div>id: {post.id}</div> */}
             <div>title: {post.title}</div>
-            <div>description: {post.desc}</div>
+            {/* <div>description: {post.desc}</div> */}
             <div>image link{post.img}</div>
             <div>date: {post.date}</div>
-            <div>uid: {post.uid}</div>
+            {/* <div>uid: {post.uid}</div> */}
             <div>category:{post.cat}</div>
           </div>
         </NavLink>
