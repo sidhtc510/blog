@@ -13,9 +13,12 @@
 
  Date: 12/04/2023 19:54:37
 */
+CREATE DATABASE blog;
+
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
 
 -- ----------------------------
 -- Table structure for posts
