@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { data } from "../data/content";
+import moment from "moment";
 import { NavLink, useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -22,6 +23,11 @@ export default function Home() {
     fetchData();
   }, [cat]);
 
+
+const getText = (html) =>{
+  const doc = new DOMParser().parseFromString(html, "text/html")
+  return doc.body.textContent
+}
   return (
     <div className="postsContainer">
       {posts.map((post) => (
@@ -29,10 +35,12 @@ export default function Home() {
           <div className="post">
             <div>id: {post.id}</div>
             <div>title: {post.title}</div>
-            <div>description: {post.desc}</div>
-            <div>image link{`./upload/${post.img}`}</div>
-            <div>date: {post.date}</div>
-            <div>uid: {post.uid}</div>
+            {/* <div>description: {getText(post.desc)}</div> */}
+            <img src={`./upload/${post.img}`} alt="" />
+            
+            <div>date: {moment(post.date).fromNow()}</div>
+            {/* <div>uid: {post.uid}</div> */}
+      
             <div>category:{post.cat}</div>
           </div>
         </NavLink>

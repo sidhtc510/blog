@@ -40,6 +40,13 @@ export default function Single({}) {
     }
   };
 
+
+  const getText = (html) =>{
+    const doc = new DOMParser().parseFromString(html, "text/html")
+    return doc.body.textContent
+  }
+
+  
   return (
     // <div>
     //   {id}
@@ -50,13 +57,14 @@ export default function Single({}) {
 
     <div className="singleWrapper">
       <div className="singlePost">
-        <div>id: {post.id}</div>
+        {/* <div>id: {post.id}</div> */}
         <div>title: {post.title}</div>
-        <div>description: {post.desc}</div>
-        <div>image: {post?.img}</div>
+        {/* <div>image: {post?.img}</div> */}
+        <img src={`../upload/${post?.img}`} alt="" />
         <div>date: {moment(post.date).fromNow()}</div>
         <div>username: {post.username}</div>
         <div>category:{post.cat}</div>
+        <div>{getText(post.desc)}</div>
 
         {currentUser && currentUser.username === post.username ? (
           <div>
