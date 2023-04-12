@@ -4,7 +4,12 @@
   padding: 0;
   font-family: "Nunito", sans-serif;
 }
+.app>.container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
+}
 /* // LOGIN & REGISTER */
 .auth {
   display: flex;
@@ -87,6 +92,7 @@ footer {
   padding: 40px;
   background-color: #ffe031;
   border-top: 1px solid gray;
+  flex: 0 0 auto;
 }
 
 /* post */
@@ -95,6 +101,7 @@ footer {
   flex-wrap: wrap;
   gap: 20px;
   margin: 20px;
+  flex: 1 0 auto;
 }
 .post {
   border: 1px solid black;
@@ -107,13 +114,44 @@ footer {
 .write {
   display: flex;
   justify-content: space-between;
-}
-.editor {
-  width: 400px;
-  height: 300px;
-  margin: 60px 0;
+  width: 1200px;
+  margin: 0 auto;
+  flex: 1 0 auto;
 }
 
+
+.editor {
+  width: 800px;
+  height: 300px;
+  margin: 10px 0;
+  background-color: white;
+
+}
+
+.write .inputTitle {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 800;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+
+.categoryRadio{
+  display: flex;
+  flex-direction: column;
+gap: 10px;
+margin: 10px;
+}
+
+.item{
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0 ;
+  background-color: white;
+}
 /* Category */
 .categoryContainer {
   display: flex;
@@ -127,31 +165,58 @@ footer {
   font-weight: bold;
 }
 
-
 /* menu */
-.menu{
+.menu {
   border: 2px solid dashed;
   width: 300px;
 }
 
 /* single */
 
-.singleWrapper{
-display: flex;
-justify-content: space-between;
+.singleWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 auto;
 }
 
-.singlePost{
+.singlePost {
   padding: 20px;
   margin: 20px auto;
   border: 1px solid black;
   border-radius: 8px;
 }
 
-.singlePost img{
+.singlePost img {
   width: 500px;
 }
 
-img{
+img {
   width: 250px;
+}
+
+.buttonGroup{
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+  vertical-align: center;
+}
+.editPostButton{
+  background-color: rgb(66, 126, 10);
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.deletePostButton{
+  height: 35px;
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  vertical-align: center;
 }

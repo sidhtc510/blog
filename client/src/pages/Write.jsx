@@ -5,9 +5,6 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 
-
-
-
 export default function Write() {
   const state = useLocation().state;
   const [title, setTitle] = useState(state?.title || "");
@@ -33,7 +30,7 @@ export default function Write() {
   const handleClick = async (e) => {
     e.preventDefault();
     const imgUrl = await upload();
-  // console.log(imgUrl);
+    // console.log(imgUrl);
     try {
       state
         ? await axios.put(`/posts/${state.id}`, {
@@ -42,7 +39,6 @@ export default function Write() {
             cat,
             img: file ? imgUrl : state?.img,
           })
-       
         : await axios.post(`/posts/`, {
             title,
             desc: value,
@@ -51,7 +47,7 @@ export default function Write() {
             date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
           });
 
-          navigate("/");
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -61,6 +57,7 @@ export default function Write() {
     <div className="write">
       <div className="add">
         <input
+          className="inputTitle"
           type="text"
           value={title}
           placeholder="title"
@@ -93,43 +90,46 @@ export default function Write() {
           <label htmlFor="file">
             {state?.img ? `Uploaded image -  ${state?.img}` : ""}{" "}
           </label>
-
-          <div className="buttons">
-            {/* <button>Save as a draft</button> */}
-            <button onClick={handleClick}>Publish</button>
-          </div>
         </div>
         <div className="item">
           <h1>Category</h1>
-          <input
-            type="radio"
-            checked={cat && cat === "fe"}
-            name="cat"
-            id="FrontEnd"
-            value="fe"
-            onChange={(e) => setCat(e.target.value)}
-          />
-          <label htmlFor="FrontEnd">FrontEnd</label>
+          <div className="categoryRadio">
+            <label htmlFor="FrontEnd"><input
+              type="radio"
+              checked={cat && cat === "fe"}
+              name="cat"
+              id="FrontEnd"
+              value="fe"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            FrontEnd</label>
 
-          <input
-            type="radio"
-            checked={cat && cat === "be"}
-            name="cat"
-            id="BackEnd"
-            value="be"
-            onChange={(e) => setCat(e.target.value)}
-          />
-          <label htmlFor="BackEnd">BackEnd</label>
+            <label htmlFor="BackEnd">
+              <input
+              type="radio"
+              checked={cat && cat === "be"}
+              name="cat"
+              id="BackEnd"
+              value="be"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            BackEnd</label>
 
-          <input
-            type="radio"
-            checked={cat && cat === "qa"}
-            name="cat"
-            id="qa"
-            value="qa"
-            onChange={(e) => setCat(e.target.value)}
-          />
-          <label htmlFor="qa">QA</label>
+            <label htmlFor="qa"><input
+              type="radio"
+              checked={cat && cat === "qa"}
+              name="cat"
+              id="qa"
+              value="qa"
+              onChange={(e) => setCat(e.target.value)}
+            />
+            QA</label>
+          </div>
+        </div>
+
+        <div className="buttons">
+          {/* <button>Save as a draft</button> */}
+          <button onClick={handleClick}>Publish</button>
         </div>
       </div>
     </div>

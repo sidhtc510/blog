@@ -66,11 +66,11 @@ export default function Single({}) {
           <div>{getText(post.desc)}</div>
 
           {currentUser && currentUser.username === post.username ? (
-            <div>
-              <NavLink to={`/write/?edit=${post.id}`} state={post}>
+            <div className="buttonGroup">
+              <NavLink className="editPostButton" to={`/write/?edit=${post.id}`} state={post}>
                 Edit post
               </NavLink>
-              <NavLink onClick={handleDelete}>Delete post</NavLink>
+              <NavLink className="deletePostButton" onClick={handleDelete}>Delete post</NavLink>
             </div>
           ) : null}
         </div>
