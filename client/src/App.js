@@ -6,25 +6,26 @@ import Single from "./pages/Single";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Footer from "./components/Footer";
-import  "./style.css"
+import "./style.css";
 import Category from "./components/Category";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app">
-      <div className="container">
-        <Navbar />
-        <Category />
-        <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/register" Component={Register} />
-          <Route path="/login" Component={Login} />
-          <Route path="/post/:id" Component={Single} />
-          <Route path="/write" Component={Write} />
-        </Routes>
-        <Footer />
-      </div>
+        <div className="container">
+          <Navbar />
+          <Category />
+          <Routes>
+            <Route path="/" Component={Home} />
+            <Route path="/register" Component={Register} />
+            <Route path="/login" Component={Login} />
+            <Route path="/post/:id" Component={Single} />
+            <Route path="/write" Component={Write} />
+          </Routes>
+
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

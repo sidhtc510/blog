@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import moment from "moment";
 
+
 export default function Write() {
   const state = useLocation().state;
   const [title, setTitle] = useState(state?.title || "");
@@ -94,36 +95,41 @@ export default function Write() {
         <div className="item">
           <h1>Category</h1>
           <div className="categoryRadio">
-            <label htmlFor="FrontEnd"><input
-              type="radio"
-              checked={cat && cat === "fe"}
-              name="cat"
-              id="FrontEnd"
-              value="fe"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            FrontEnd</label>
+            <label htmlFor="FrontEnd">
+              <input
+                type="radio"
+                checked={cat && cat === "fe"}
+                name="cat"
+                id="FrontEnd"
+                value="fe"
+                onChange={(e) => setCat(e.target.value)}
+              />
+              FrontEnd
+            </label>
 
             <label htmlFor="BackEnd">
               <input
-              type="radio"
-              checked={cat && cat === "be"}
-              name="cat"
-              id="BackEnd"
-              value="be"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            BackEnd</label>
+                type="radio"
+                checked={cat && cat === "be"}
+                name="cat"
+                id="BackEnd"
+                value="be"
+                onChange={(e) => setCat(e.target.value)}
+              />
+              BackEnd
+            </label>
 
-            <label htmlFor="qa"><input
-              type="radio"
-              checked={cat && cat === "qa"}
-              name="cat"
-              id="qa"
-              value="qa"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            QA</label>
+            <label htmlFor="qa">
+              <input
+                type="radio"
+                checked={cat && cat === "qa"}
+                name="cat"
+                id="qa"
+                value="qa"
+                onChange={(e) => setCat(e.target.value)}
+              />
+              QA
+            </label>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 export default function Register() {
   const [inputs, setInputs] = useState({
     username: "",
@@ -24,6 +25,7 @@ export default function Register() {
       // const res = await axios.post("/auth/register", inputs);
       await axios.post("/auth/register", inputs);
       navigate("/login");
+
       //  console.log(res);
     } catch (err) {
       setError(err.response.data);

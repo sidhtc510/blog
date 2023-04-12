@@ -30,9 +30,9 @@ export default function Navbar() {
           <NavLink to="/">Logo</NavLink>
         </div>
         <span>
-          <div className="links">
+          {/* <div className="links">
             <NavLink to="/">Home</NavLink>
-          </div>
+          </div> */}
 
           {showEditorMode()}
 
