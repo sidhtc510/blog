@@ -6,7 +6,7 @@
 /api/node_modules
 # /client/.pnp
 # /client/.pnp.js
-./readFirst_.txt
+readFirst_.txt
 
 # # testing
 # /client/coverage
