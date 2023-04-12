@@ -30,7 +30,7 @@ export default function Home() {
             <div>id: {post.id}</div>
             <div>title: {post.title}</div>
             <div>description: {post.desc}</div>
-            <div>image link{post.img}</div>
+            <div>image link{`./upload/${post.img}`}</div>
             <div>date: {post.date}</div>
             <div>uid: {post.uid}</div>
             <div>category:{post.cat}</div>

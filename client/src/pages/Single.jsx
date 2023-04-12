@@ -60,7 +60,7 @@ export default function Single({}) {
 
         {currentUser && currentUser.username === post.username ? (
           <div>
-            <NavLink to={`/write/?edit=${post.id}`}>Edit post</NavLink>
+            <NavLink to={`/write/?edit=${post.id}`} state={post}>Edit post</NavLink>
             <NavLink onClick={handleDelete}>Delete post</NavLink>
           </div>
         ) : null}
