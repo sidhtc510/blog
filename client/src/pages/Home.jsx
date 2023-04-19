@@ -10,7 +10,6 @@ export default function Home() {
   const cat = useLocation().search;
   // console.log(cat);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,26 +22,41 @@ export default function Home() {
     fetchData();
   }, [cat]);
 
+  const getText = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    let withoutHtml = (
+      <div dangerouslySetInnerHTML={{ __html: doc.body.innerHTML }} />
+    );
 
-
+    return withoutHtml;
+  };
 
   return (
-    <div className="postsContainer">
-      {posts.map((post) => (
-        <NavLink to={`/post/${post.id}`} key={post.id}>
-          <div className="post">
-            <div>id: {post.id}</div>
-            <div>title: {post.title}</div>
-            {/* <div>description: {getText(post.desc)}</div> */}
-            <img src={`./upload/${post.img}`} alt="" />
-            
-            <div>date: {moment(post.date).fromNow()}</div>
-            {/* <div>uid: {post.uid}</div> */}
-      
-            <div>category:{post.cat}</div>
-          </div>
-        </NavLink>
-      ))}
-    </div>
+    
+      <div className="postsContainer">
+        {posts.map((post) => (
+          <NavLink to={`/post/${post.id}`} key={post.id}>
+            <div className="posts">
+              {/* <div>id: {post.id}</div> */}
+              <img src={`./upload/${post.img}`} alt="" />
+              <div className="postTextWrap">
+                <div className="titleDescrWrap">
+                  <div className="postsTitle"> {post.title}</div>
+                  <div className="postsDescr">
+                    {getText(post.desc.slice(0, 149) + " ...")}
+                  </div>
+                </div>
+
+                <div className="dateUidCatWrap">
+                  <div>{moment(post.date).fromNow()}</div>
+                  {/* <div>uid: {post.uid}</div> */}
+                  {/* <div>{post.cat}</div> */}
+                </div>
+              </div>
+            </div>
+          </NavLink>
+        ))}
+      </div>
+    
   );
 }
