@@ -4,20 +4,32 @@
   padding: 0;
   font-family: "Nunito", sans-serif;
 }
+a {
+  text-decoration: none;
+}
+.app {
+  background: #0b0f19;
+}
+.app > .container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
+  max-width: 1200px;
+  margin: 0 auto;
+}
 /* // LOGIN & REGISTER */
 .auth {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #b9e7e7;
   height: 100vh;
 }
 
 h1 {
   font-size: 20px;
-  color: teal;
+  color: rgb(43, 53, 255);
   margin-bottom: 20px;
 }
 
@@ -44,7 +56,7 @@ form {
 button {
   padding: 10px;
   border: none;
-  background-color: teal;
+  background-color: rgb(43, 53, 255);
   cursor: pointer;
   color: white;
   border-radius: 8px;
@@ -65,46 +77,217 @@ button {
 
 .navbar {
   padding: 20px;
-  background-color: #b9e7e7;
-  border-bottom: 1px solid gray;
+  /* background-color: #ffe031; */
+  /* border-bottom: 1px solid gray; */
 }
 .navbar .container {
   display: flex;
   justify-content: space-between;
 }
 
-.navbar span{
-    display: flex;
-    gap: 10px;
+.navbar span {
+  display: flex;
+  gap: 10px;
+  color: white;
+  align-items: center;
 }
 .logo {
 }
 .links {
 }
 
+.navbar a {
+  color: #ffffff;
+  font-size: 24px;
+  text-decoration: none;
+}
+
 /* Footer */
 footer {
   padding: 40px;
-  background-color: #b9e7e7;
-  border-top: 1px solid gray;
+  /* background-color: #ffe031; */
+  /* border-top: 1px solid gray; */
+  flex: 0 0 auto;
 }
-
 
 /* post */
 
-.post{
-    border: 1px solid black;
-    
+.postsContainer {
+  display: flex;
+  flex: 1 0 auto;
+
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+
+}
+.posts {
+  display: flex;
+  max-width: 1000px;
+  max-height: 140px;
+    /* pad
+  /* padding: 20px; */
+  /* border: 1px solid; */
+  gap: 20px;
 }
 
+.postTextWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.postsTitle {
+  color: white;
+  /* text-decoration: none; */
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.postsDescr {
+  color: rgb(210, 210, 210);
+  /* text-decoration: none; */
+  font-size: 16px;
+  font-weight: 400;
+  margin: 5px 20px;
+}
+
+.dateUidCatWrap {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(80, 80, 80);
+}
 
 /* write */
-.write{
-    display: flex;
-    justify-content: space-between;
+.write {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  margin: 0 auto;
+  flex: 1 0 auto;
 }
-.editor{
-    width: 400px;
-    height: 300px;
-    margin: 60px 0;
+
+.editor {
+  width: 800px;
+  height: 300px;
+  margin: 10px 0;
+  background-color: white;
+}
+
+.write .inputTitle {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 800;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+
+.categoryRadio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+
+.item {
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  background-color: white;
+}
+/* Category */
+.categoryContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.categoryContainer a {
+  text-decoration: none;
+  color: #6366f1;
+  font-weight: bold;
+}
+
+/* menu */
+.menu {
+  border: 2px solid dashed;
+  width: 300px;
+}
+
+/* single */
+
+.singleWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 auto;
+}
+
+.singlePost {
+  padding: 20px;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.singlePost img {
+  width: 500px;
+}
+
+.posts > img {
+  width: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+  vertical-align: center;
+}
+.editPostButton {
+  background-color: rgb(66, 126, 10);
+  color: white;
+  padding: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 8px;
+}
+
+.deletePostButton {
+  height: 35px;
+  border-radius: 8px;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  vertical-align: center;
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 120;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 20px;
+  background: #71ff88;
+  font-size: 32px;
+  width: 300px;
+  height: 150px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
 }

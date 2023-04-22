@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 export default function Register() {
   const [inputs, setInputs] = useState({
     username: "",
@@ -9,24 +10,34 @@ export default function Register() {
     password: "",
   });
 
-  const [err, setError] = useState(null)
+  const [err, setError] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    inputs.email = inputs.email.trim()
+    console.log(inputs);
     try {
+      // const res = await axios.post("/auth/register", inputs);
       await axios.post("/auth/register", inputs);
-      navigate("/login")
- 
+      navigate("/login");
+
+      //  console.log(res);
     } catch (err) {
-      setError(err.response.data)
+      setError(err.response.data);
       // console.log(err);
     }
   };
+
+  // const [inputs, setInputs] = useState({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  // });
 
   return (
     <div className="auth">
