@@ -34,6 +34,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/posts", postRoutes);
 
 app.get("/test", (req, res) => {
+  
   res.json("it works");
 });
 

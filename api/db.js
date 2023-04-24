@@ -9,4 +9,10 @@ export const db = mysql.createConnection({
     database: "blog"
 })
 
-console.log(db);
+db.connect((err) => {
+    if (err) {
+      console.error('Ошибка соединения:', err);
+      return;
+    }∆
+    console.log('Соединение успешно установлено');
+  });
