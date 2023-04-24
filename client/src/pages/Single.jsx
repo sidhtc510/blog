@@ -53,24 +53,32 @@ export default function Single({}) {
     //  <NavLink to={``}>Delete post</NavLink>
     // </div>
     <>
-      <h2 style={{textAlign: 'center'}}>individual post page</h2>
+      <h2 style={{ textAlign: "center" }}>{post.title}</h2>
       <div className="singleWrapper">
         <div className="singlePost">
           {/* <div>id: {post.id}</div> */}
-          <div>title: {post.title}</div>
+          {/* <div>title: {post.title}</div> */}
           {/* <div>image: {post?.img}</div> */}
           <img src={`../upload/${post?.img}`} alt="" />
-          <div>date: {moment(post.date).fromNow()}</div>
-          <div>username: {post.username}</div>
-          <div>category:{post.cat}</div>
-          <div>{getText(post.desc)}</div>
+          <div className="dateAuthorWrapper">
+            <span>Дата: {moment(post.date).fromNow()}</span>
+            <span>Автор: {post.username}</span>
+          </div>
+          {/* <div>category:{post.cat}</div> */}
+          <div className="singlePostDescr">{getText(post.desc)}</div>
 
           {currentUser && currentUser.username === post.username ? (
             <div className="buttonGroup">
-              <NavLink className="editPostButton" to={`/write/?edit=${post.id}`} state={post}>
+              <NavLink
+                className="editPostButton"
+                to={`/write/?edit=${post.id}`}
+                state={post}
+              >
                 Edit post
               </NavLink>
-              <NavLink className="deletePostButton" onClick={handleDelete}>Delete post</NavLink>
+              <NavLink className="deletePostButton" onClick={handleDelete}>
+                Delete post
+              </NavLink>
             </div>
           ) : null}
         </div>
